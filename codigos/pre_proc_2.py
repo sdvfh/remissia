@@ -116,7 +116,9 @@ def apply_add_digito(db):
 
 
 def tratar_principal(db):
-    '''Parte 2 do pre-processamento da tabela.'''
+    '''Parte 2 do pre-processamento da tabela.
+    Transformacao das colunas para entrar em conformidade com as outras
+    de mesma informacao.'''
     colunas_tratar = ['DASRCT',
                       'DASRCN',
                       'DASRCM',
