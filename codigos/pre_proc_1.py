@@ -34,18 +34,17 @@ dir_base_destino = 'base_col_sep_quimo'
 dic_variaveis = 'dicionario_dados_quimo.txt'
 
 # %%
-path_base_origem = '../{0}/incidence'.format(dir_base_origem)
-path_base_destino = '../{0}'.format(dir_base_destino)
 dic_variaveis = pd.read_csv('../dicionarios/{0}'.format(dic_variaveis),
                             header=None)
 lista, lista_nomes = ler_dicionario(dic_variaveis)
 
 # %%
-for base_path in glob.iglob('{0}/**/*.TXT'.format(path_base_origem),
-                            recursive=True):
+for base_path in glob.iglob(
+        '../bases/{0}/incidence/**/*.TXT'.format(dir_base_origem),
+        recursive=True):
     antigo = time.time()
     path_base_destino_temp = os.path.join(
-        dir_base_destino,
+        '../bases/{0}'.format(dir_base_destino),
         base_path.split(sep='/')[-2],
         base_path.split(sep='/')[-1][:-4] + '.csv')
 

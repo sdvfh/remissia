@@ -156,11 +156,11 @@ dic_variaveis = pd.read_csv('../dicionarios/{0}'.format(dic_variaveis),
 
 # %%
 for i, path_base in enumerate(glob.iglob(
-        '../{0}/**/*.csv'.format(dir_base_origem),
+        '../bases/{0}/**/*.csv'.format(dir_base_origem),
         recursive=True)):
 
     antigo = time.time()
-    path_base_tratada = '../{0}/{1}/{2}.csv'.format(
+    path_base_tratada = '../bases/{0}/{1}/{2}.csv'.format(
         dir_base_destino,
         path_base.split(sep='/')[-2],
         path_base.split(sep='/')[-1][:-4])
