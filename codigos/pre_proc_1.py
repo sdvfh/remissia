@@ -28,6 +28,18 @@ def ler_dicionario(dic_variaveis):
     return lista, lista_nomes
 
 
+def tratar_principal(base_path, path_base_destino_temp, lista):
+    '''Parte 1 do pre-processamento.
+    Separacao das strings nas colunas de acordo com o dicionario.'''
+    df = cudf.read_csv(base_path, header=None)
+    for nome, pos, tam in lista:
+        pos -= 1
+        df[nome] = df['0'].str.slice(pos, pos + tam).str.strip()
+    df = df.drop('0', axis=1)
+    df.to_csv(path_base_destino_temp, index=False)
+    return
+
+
 # %%
 dir_base_origem = 'SEER_1975_2016_CUSTOM_TEXTDATA'
 dir_base_destino = 'base_col_sep_quimo'
@@ -50,13 +62,7 @@ for base_path in glob.iglob(
 
     if not os.path.exists(os.path.dirname(path_base_destino_temp)):
         os.makedirs(os.path.dirname(path_base_destino_temp))
-    df = cudf.read_csv(base_path, header=None)
-
-    for nome, pos, tam in lista:
-        pos -= 1
-        df[nome] = df['0'].str.slice(pos, pos + tam).str.strip()
-    df = df.drop('0', axis=1)
-    df.to_csv(path_base_destino_temp, index=False)
+    tratar_principal(base_path, path_base_destino_temp, lista)
 
     print('Tempo: {0} s | Salvo em: {1}'.format(
         round(time.time() - antigo, 2),
