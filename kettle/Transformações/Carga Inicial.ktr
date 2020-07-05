@@ -10,7 +10,7 @@
     <parameters>
       <parameter>
         <name>diretorio</name>
-        <default_value>/C:/Users/sergi/Desktop/SEER_1975_2016_CUSTOM_TEXTDATA/incidence</default_value>
+        <default_value>/D:/repositorios/remissia/base/SEER_1975_2016_CUSTOM_TEXTDATA/incidence</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2020/06/18 19:24:48.441</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/06/18 22:39:40.687</modified_date>
+    <modified_date>2020/06/21 17:48:35.464</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -494,6 +494,11 @@
   <order>
     <hop>
       <from>Text file input</from>
+      <to>Split fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split fields</from>
       <to>PostgreSQL bulk loader</to>
       <enabled>Y</enabled>
     </hop>
@@ -511,7 +516,7 @@
     </partitioning>
     <connection>SEER</connection>
     <schema/>
-    <table>base_original</table>
+    <table>seer</table>
     <load_action>TRUNCATE</load_action>
     <dbname_override/>
     <enclosure>"</enclosure>
@@ -578,8 +583,8 @@
       <date_mask/>
     </mapping>
     <mapping>
-      <stream_name>LATERAL</stream_name>
-      <field_name>LATERAL</field_name>
+      <stream_name>LATERA</stream_name>
+      <field_name>LATERA</field_name>
       <date_mask/>
     </mapping>
     <mapping>
@@ -1257,6 +1262,11 @@
       <field_name>CHEMO_RX_REC</field_name>
       <date_mask/>
     </mapping>
+    <mapping>
+      <stream_name>tipo_arquivo</stream_name>
+      <field_name>tipo_arquivo</field_name>
+      <date_mask/>
+    </mapping>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1266,7 +1276,52 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>848</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Split fields</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <splitfield>nm_arquivo</splitfield>
+    <delimiter>.</delimiter>
+    <enclosure/>
+    <fields>
+      <field>
+        <name>tipo_arquivo</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>8</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>both</trimtype>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1358,7 +1413,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>18</position>
         <length>1</length>
@@ -1373,7 +1428,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>19</position>
         <length>2</length>
@@ -1418,7 +1473,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>24</position>
         <length>3</length>
@@ -1502,7 +1557,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>LATERAL</name>
+        <name>LATERA</name>
         <type>Integer</type>
         <format>#</format>
         <currency/>
@@ -1583,7 +1638,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>57</position>
         <length>1</length>
@@ -1598,7 +1653,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>58</position>
         <length>1</length>
@@ -1628,7 +1683,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>60</position>
         <length>3</length>
@@ -1643,7 +1698,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>63</position>
         <length>2</length>
@@ -1658,7 +1713,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>65</position>
         <length>2</length>
@@ -1673,7 +1728,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>67</position>
         <length>1</length>
@@ -1688,7 +1743,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>68</position>
         <length>2</length>
@@ -1703,7 +1758,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>70</position>
         <length>2</length>
@@ -1778,7 +1833,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>92</position>
         <length>1</length>
@@ -1793,7 +1848,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>93</position>
         <length>1</length>
@@ -1808,7 +1863,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>94</position>
         <length>1</length>
@@ -1823,7 +1878,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>95</position>
         <length>3</length>
@@ -1838,7 +1893,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>98</position>
         <length>3</length>
@@ -1853,7 +1908,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>101</position>
         <length>3</length>
@@ -1868,7 +1923,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>104</position>
         <length>2</length>
@@ -1883,7 +1938,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>106</position>
         <length>3</length>
@@ -1898,7 +1953,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>109</position>
         <length>3</length>
@@ -1913,7 +1968,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>112</position>
         <length>3</length>
@@ -1928,7 +1983,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>115</position>
         <length>3</length>
@@ -1943,7 +1998,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>118</position>
         <length>3</length>
@@ -1958,7 +2013,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>121</position>
         <length>3</length>
@@ -1973,7 +2028,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>124</position>
         <length>3</length>
@@ -1988,7 +2043,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>127</position>
         <length>2</length>
@@ -2003,7 +2058,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>129</position>
         <length>2</length>
@@ -2018,7 +2073,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>131</position>
         <length>2</length>
@@ -2033,7 +2088,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>133</position>
         <length>2</length>
@@ -2048,7 +2103,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>135</position>
         <length>1</length>
@@ -2063,7 +2118,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>136</position>
         <length>1</length>
@@ -2138,7 +2193,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>158</position>
         <length>2</length>
@@ -2153,7 +2208,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>160</position>
         <length>1</length>
@@ -2168,7 +2223,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>161</position>
         <length>1</length>
@@ -2183,7 +2238,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>162</position>
         <length>2</length>
@@ -2198,7 +2253,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>6</nullif>
         <ifnull/>
         <position>165</position>
         <length>1</length>
@@ -2213,7 +2268,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>169</position>
         <length>2</length>
@@ -2228,7 +2283,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>173</position>
         <length>1</length>
@@ -2243,7 +2298,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>174</position>
         <length>1</length>
@@ -2288,7 +2343,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>191</position>
         <length>2</length>
@@ -2303,7 +2358,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99999</nullif>
         <ifnull/>
         <position>198</position>
         <length>5</length>
@@ -2348,7 +2403,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>217</position>
         <length>3</length>
@@ -2363,7 +2418,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>220</position>
         <length>3</length>
@@ -2438,7 +2493,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>232</position>
         <length>1</length>
@@ -2453,7 +2508,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>233</position>
         <length>1</length>
@@ -2468,7 +2523,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>234</position>
         <length>1</length>
@@ -2483,7 +2538,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>235</position>
         <length>1</length>
@@ -2498,7 +2553,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>236</position>
         <length>2</length>
@@ -2513,7 +2568,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>238</position>
         <length>2</length>
@@ -2528,7 +2583,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>240</position>
         <length>1</length>
@@ -2543,7 +2598,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>241</position>
         <length>1</length>
@@ -2588,7 +2643,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99999</nullif>
         <ifnull/>
         <position>254</position>
         <length>5</length>
@@ -2603,7 +2658,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99999</nullif>
         <ifnull/>
         <position>259</position>
         <length>5</length>
@@ -2648,7 +2703,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>266</position>
         <length>1</length>
@@ -2663,7 +2718,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>267</position>
         <length>2</length>
@@ -2678,7 +2733,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>269</position>
         <length>2</length>
@@ -2693,7 +2748,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>271</position>
         <length>1</length>
@@ -2708,7 +2763,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>272</position>
         <length>1</length>
@@ -2723,7 +2778,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>273</position>
         <length>1</length>
@@ -2738,7 +2793,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>274</position>
         <length>1</length>
@@ -2753,7 +2808,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>275</position>
         <length>1</length>
@@ -2768,7 +2823,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>276</position>
         <length>1</length>
@@ -2783,7 +2838,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>4</nullif>
         <ifnull/>
         <position>277</position>
         <length>1</length>
@@ -2798,7 +2853,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>4</nullif>
         <ifnull/>
         <position>278</position>
         <length>1</length>
@@ -2828,7 +2883,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>281</position>
         <length>3</length>
@@ -2843,7 +2898,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>284</position>
         <length>3</length>
@@ -2858,7 +2913,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>287</position>
         <length>3</length>
@@ -2873,7 +2928,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>290</position>
         <length>3</length>
@@ -2888,7 +2943,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>293</position>
         <length>3</length>
@@ -2903,7 +2958,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>296</position>
         <length>3</length>
@@ -2918,7 +2973,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>299</position>
         <length>1</length>
@@ -2933,7 +2988,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9999</nullif>
         <ifnull/>
         <position>300</position>
         <length>4</length>
@@ -2948,7 +3003,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>304</position>
         <length>1</length>
@@ -2963,7 +3018,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>5</nullif>
         <ifnull/>
         <position>310</position>
         <length>1</length>
@@ -2978,7 +3033,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>311</position>
         <length>3</length>
@@ -2993,7 +3048,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>314</position>
         <length>3</length>
@@ -3008,7 +3063,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>317</position>
         <length>3</length>
@@ -3023,7 +3078,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>320</position>
         <length>3</length>
@@ -3038,7 +3093,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>323</position>
         <length>2</length>
@@ -3053,7 +3108,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>325</position>
         <length>2</length>
@@ -3068,7 +3123,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>327</position>
         <length>2</length>
@@ -3083,7 +3138,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>329</position>
         <length>2</length>
@@ -3098,7 +3153,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>331</position>
         <length>3</length>
@@ -3113,7 +3168,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>334</position>
         <length>3</length>
@@ -3128,7 +3183,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>337</position>
         <length>3</length>
@@ -3143,7 +3198,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>340</position>
         <length>1</length>
@@ -3158,7 +3213,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>5</nullif>
         <ifnull/>
         <position>341</position>
         <length>1</length>
@@ -3173,7 +3228,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>347</position>
         <length>1</length>
@@ -3188,7 +3243,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>348</position>
         <length>1</length>
@@ -3203,7 +3258,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>349</position>
         <length>1</length>
@@ -3218,7 +3273,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>350</position>
         <length>1</length>
@@ -3233,7 +3288,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>351</position>
         <length>1</length>
@@ -3248,7 +3303,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>352</position>
         <length>2</length>
@@ -3263,7 +3318,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>354</position>
         <length>2</length>
@@ -3278,7 +3333,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>356</position>
         <length>2</length>
@@ -3293,7 +3348,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>358</position>
         <length>2</length>
@@ -3308,7 +3363,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>360</position>
         <length>2</length>
@@ -3323,7 +3378,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>999</nullif>
         <ifnull/>
         <position>363</position>
         <length>3</length>
@@ -3338,7 +3393,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>99</nullif>
         <ifnull/>
         <position>366</position>
         <length>5</length>
@@ -3398,7 +3453,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>386</position>
         <length>1</length>
@@ -3413,7 +3468,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>387</position>
         <length>1</length>
@@ -3428,7 +3483,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>388</position>
         <length>1</length>
@@ -3458,7 +3513,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>391</position>
         <length>1</length>
@@ -3473,7 +3528,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>9</nullif>
         <ifnull/>
         <position>392</position>
         <length>1</length>
@@ -3488,7 +3543,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>0</nullif>
         <ifnull/>
         <position>393</position>
         <length>1</length>
@@ -3503,7 +3558,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>0</nullif>
         <ifnull/>
         <position>394</position>
         <length>1</length>
@@ -3518,7 +3573,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>0</nullif>
         <ifnull/>
         <position>395</position>
         <length>1</length>
@@ -3533,7 +3588,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>0</nullif>
         <ifnull/>
         <position>396</position>
         <length>1</length>
@@ -3559,7 +3614,7 @@
     <line_number_files_extension>line</line_number_files_extension>
     <date_format_lenient>Y</date_format_lenient>
     <date_format_locale>pt_BR</date_format_locale>
-    <shortFileFieldName/>
+    <shortFileFieldName>nm_arquivo</shortFileFieldName>
     <pathFieldName/>
     <hiddenFieldName/>
     <lastModificationTimeFieldName/>
