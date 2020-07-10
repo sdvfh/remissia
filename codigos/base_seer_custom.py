@@ -10,6 +10,7 @@ class Base_seer():
         self.spark = SparkSession.builder.appName("seer_pre_prop").getOrCreate()
         self.dic_dados = pd.read_csv('{0}/carga_inicial.csv'.format(self.path), sep=';')
         Base_seer.criar_tabela(self)
+        self.df.createOrReplaceTempView("seer")
         print('Tabela carregada.')
         return
     
