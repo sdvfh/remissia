@@ -2,7 +2,7 @@ from base_seer_custom import Base_seer
 
 def criar_select(lista, nome_coluna):
     string_final = 'CASE '
-    for to_replace, value in lista_T:
+    for to_replace, value in lista:
         string_final += 'WHEN {0} = \'{1}\' THEN \'{2}\'\n'.format(nome_coluna, to_replace, value)
     string_final += 'END'
     return string_final
