@@ -18,7 +18,7 @@ for path in paths:
         valor_nulo = variavel[1]['Null if']
         df[nome] = df[0].str.slice(start=pos, stop=pos+tam).str.strip()
         if not np.isnan(valor_nulo):
-            df[nome] = df[nome].str.replace(valor_nulo, '')
+            df[nome] = df[nome].str.replace(str(valor_nulo), '')
         if tipo == 'Integer':
             df[nome] = pd.to_numeric(df[nome], downcast='unsigned', errors='coerce')
     df.drop(columns=0, inplace=True)
