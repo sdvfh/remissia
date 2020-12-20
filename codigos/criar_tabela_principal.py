@@ -1,4 +1,5 @@
-from base_seer_custom import Base_seer
+from pyspark.sql import SparkSession
+import pyspark.sql.functions as F
 
 def criar_select(lista, nome_coluna):
     string_final = 'CASE '
@@ -14,10 +15,11 @@ def add_digito(nome_coluna):
      WHEN {0} = 88 then ({0} * 10) + 8
      ELSE {0} * 10 END'''.format(nome_coluna)
 
-s = Base_seer('../bases/SEER_1975_2016_CUSTOM_TEXTDATA')
+spark = SparkSession.builder.appName("seer").getOrCreate()
+df = spark.read.csv(r'C:\arquivos_spark\seer_bruto.csv', header=True)
+df.createOrReplaceTempView("seer")
 
-
-s.df = s.df.fillna(0, subset='SRV_TIME_MON')
+df = df.fillna(0, subset='SRV_TIME_MON')
 
 lista_T = [
     ['pX', ''],
@@ -207,19 +209,19 @@ SELECT
 --    ######################################## TARGETS #######################################
     
        CASE
-         WHEN SRV_TIME_MON >= 60 THEN 1 ELSE 0 END      AS CURADO
+         WHEN SRV_TIME_MON >= 60 THEN 0 ELSE 1 END      AS MORTO
      , SEER.SRV_TIME_MON                                AS TEMPO_SOBRE
      , CASE
          WHEN VSRTSADX = 1 THEN 1
          WHEN VSRTSADX IN (0, 8) THEN 0
-         ELSE NULL END                                  AS SOBRE_COM_CANCER
+         ELSE NULL END                                  AS MORTE_CANCER
          
 --    ################################### DADOS DO PACIENTE #######################################
      
      , REC_NO - 1                                       AS HISTORICO_TUMOR
-     , YR_BRTH                                          AS ANO_NASC
-     , SEER.MDXRECMP                                    AS MES_DIAG
-     , SEER.YEAR_DX                                     AS ANO_DIAG
+     --, YR_BRTH                                          AS ANO_NASC
+     --, SEER.MDXRECMP                                    AS MES_DIAG
+     --, SEER.YEAR_DX                                     AS ANO_DIAG
      , AGE_DX                                           AS IDADE_DIAG
      , CAST(substring(ST_CNTY, 0, 2) AS INTEGER)        AS ESTADO
      , CAST(substring(ST_CNTY, 3, 3) AS INTEGER)        AS CIDADE
@@ -242,6 +244,7 @@ SELECT
 --     ############################## ESPECIFICAÇÕES DO TUMOR ####################################### 
  
      , TIPO_TUMOR                                       AS TIPO_TUMOR
+     , PASTA_ORIGEM
      , FIRSTPRM                                         AS PRI_TUMOR
      , COALESCE(
          DAJCC7T
@@ -325,7 +328,7 @@ FROM SEER
            query_M_VALUE=M_VALUE, query_DASRCM=DASRCM, 
            query_DAJCCSTG=DAJCCSTG, query_ADJAJCCSTG=ADJAJCCSTG, 
            query_AJCC_STG=AJCC_STG, query_DSRPSG=DSRPSG)
-s.spark.sql(query).coalesce(1).write.csv('base_seer_customizada',header=True)
+spark.sql(query).coalesce(1).write.csv(r'C:\arquivos_spark\base_seer_final',header=True)
 
 # Commented out IPython magic to ensure Python compatibility.
 # %pwd
