@@ -1,3 +1,1 @@
-TODO: Falta reanalizar os valores nulos de todas as tabelas
-
 -- Analisando os valores nulos de srv_time_mon
