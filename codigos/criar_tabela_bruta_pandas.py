@@ -23,7 +23,7 @@ def tratar_base(path):
         print(pasta_origem, tipo_tumor, nome)
         df[nome] = df[0].str.slice(start=pos, stop=pos + tam).str.strip()
         if not np.isnan(valor_nulo):
-            df[nome] = df[nome].str.replace(str(valor_nulo), '')
+            df[nome].replace(to_replace=str(int(valor_nulo)), value=np.nan, inplace=True)
         if tipo == 'Integer':
             df[nome] = pd.to_numeric(df[nome], downcast='unsigned', errors='coerce')
     df.drop(columns=0, inplace=True)
