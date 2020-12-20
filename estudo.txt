@@ -1,1 +1,2 @@
 -- Analisando os valores nulos de srv_time_mon
+Todos os valores nulos estão relacionados a certificados de óbito ou autópsias. O valor nulo será substituído por 0.
