@@ -29,7 +29,7 @@ def tratar_base(path):
     df.drop(columns=0, inplace=True)
     return df
 
-dfs = Parallel(n_jobs=16, verbose=1, max_nbytes=None, prefer='threads')(delayed(tratar_base)(path) for path in paths)
+dfs = Parallel(n_jobs=4, verbose=1, max_nbytes=None, prefer='threads')(delayed(tratar_base)(path) for path in paths)
 df = pd.concat(dfs)
 del dfs
 
