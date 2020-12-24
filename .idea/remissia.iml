@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../projeto-ia/auto/codigos">
+      <sourceFolder url="file://$MODULE_DIR$/../projeto-ia/auto/codigos" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/codigos" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (cmb)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (automl)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
