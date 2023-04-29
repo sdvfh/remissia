@@ -1,0 +1,20 @@
+name: remissia
+channels:
+  - rapidsai
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - cuml=23.04
+  - pip=23.1.2
+  - cudatoolkit=11.8.0
+  - pip:
+      - numpy==1.23.5
+      - pandas==1.5.3
+      - scikit-learn==1.2.2
+      - xgboost==1.7.5
+      - scipy==1.10.1
+      - tensorflow==2.12.0
+      - pyspark==3.4.0
+      - nvidia-cudnn-cu11==8.6.0.163
+      - psutil==5.9.5
